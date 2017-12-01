@@ -1,0 +1,15 @@
+Tecnologia (Angular 4, PrimeNG, Express, NodeJS)
+Cliente / Servidor
+Modelo de Dados(MongoDB)
+	
+hospegadem para banco de dados (Atlas / MLab) - fornecem 1GB de banco
+4 avaliadores
+1 avaliador dos 4 tem que ser o Presidente (presidente abre e fecha as avaliações)(depois de fechada nao pdoe alterar as notas)
+1 usuario para fazer as incriçoes
+-------
+forma de avaliação
+1 ganhador para Cosplay e 1 para cospobre
+
+
+validacao ???
+https://tableless.com.br/autenticar-usuarios-com-jwt-e-passport/

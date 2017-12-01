@@ -1,0 +1,18 @@
+<div class="navbar">
+  {{ tituloPagina }}
+</div>
+<div class="ui-g">
+  <div class="ui-g-12">
+    <p-confirmDialog acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
+    <p-dataTable #tabela [value]="participantes" [rows]="10" [paginator]="true" emptyMessage="Nenhum participante cadastrado">        
+        <p-column expander="true" styleClass="col-icon"></p-column>
+        <p-column field="participante" header="Participantes" [filter]="true" filterMatchMode="contains"></p-column>
+        
+        <ng-template let-car pTemplate="rowexpansion">
+            <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+
+            </div>                
+        </ng-template>
+    </p-dataTable>
+  </div>
+</div>
