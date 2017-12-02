@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  titulo = 'Agenda';
+  titulo = 'DCN 4';
 
   constructor() { }
 

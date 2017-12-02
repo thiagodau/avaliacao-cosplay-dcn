@@ -15,23 +15,26 @@ import { ContatoEdicaoComponent } from './contato-edicao/contato-edicao.componen
 import { ParticipanteService } from './service/participante.service';
 import { ContatoService } from './service/contato.service';
 
-import {
+import {SidebarModule} from 'primeng/primeng';
+import {SpinnerModule} from 'primeng/primeng';
+
+import {        
   ButtonModule,
   InputTextModule,
   InputMaskModule,
   DataTableModule,
   MessagesModule,
   ConfirmDialogModule,
-  ConfirmationService
+  ConfirmationService,
+  SharedModule
 } from 'primeng/primeng';
 import { NavbarComponent } from './navbar/navbar.component';
 
-
 const rotas: Routes = [
-  { path: 'participante', component: ParticipanteCadastroComponent },
+  { path: 'participantes', component: ParticipanteCadastroComponent },
   { path: 'contato', component: ContatoCadastroComponent },
   { path: 'contato/:id', component: ContatoEdicaoComponent },
-  { path: '', redirectTo: '/participante', pathMatch: 'full' }
+  { path: '', redirectTo: '/participantes', pathMatch: 'full' }
 ]
 
 @NgModule({
@@ -54,6 +57,8 @@ const rotas: Routes = [
     MessagesModule,
     HttpClientModule,
     ConfirmDialogModule,
+    SidebarModule,
+    SpinnerModule,
     RouterModule.forRoot(rotas)
   ],
   providers: [
