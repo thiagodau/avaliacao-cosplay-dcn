@@ -41,11 +41,11 @@ import {
 import { NavbarComponent } from './navbar/navbar.component';
 
 const rotas: Routes = [
+  { path: 'inicioDcn', component: InicioDcnComponent },
   { path: 'painelVotacao', component: PainelVotacaoComponent },
   { path: 'participantes', component: CadastroParticipanteComponent },
   { path: 'avaliadores', component: AvaliadorCadastroComponent },
   { path: 'responsaveisInscricao', component: ResponsavelInscricaoComponent },
-  { path: 'inicioDcn', component: InicioDcnComponent },
   { path: 'contato', component: ContatoCadastroComponent },
   { path: 'contato/:id', component: ContatoEdicaoComponent },
   { path: '', redirectTo: '/inicioDcn', pathMatch: 'full' }

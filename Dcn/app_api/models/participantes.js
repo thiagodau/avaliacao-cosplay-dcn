@@ -14,7 +14,8 @@ var participante = new mongoose.Schema({
         required: true
     },
     pontos: {
-        type: Number
+        type: Number,
+        default: null
     }
 });
 

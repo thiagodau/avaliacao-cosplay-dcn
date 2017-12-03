@@ -46,6 +46,7 @@ export class CadastroParticipanteComponent implements OnInit {
 
   cadastrar(formulario: FormControl) {
     this.mensagens = [];
+    
     this.ParticipanteService.salvar(formulario.value)
       .then(
       () => {

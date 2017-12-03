@@ -7,22 +7,24 @@
     <button pButton type="button" (click)="avaliador()" icon="fa-user" label="Acessar Painel"></button>
     <p-sidebar [(visible)]="visibleSidebar" position="left" [baseZIndex]="10000">
       <h1 style="font-weight:normal">Login</h1>
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-        <p-inputMask type="text" mask="999.999.999-99" placeholder="CPF"></p-inputMask>
-      </div>
-      <br>
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon"><i class="fa fa-user-secret"></i></span>
-        <input pPassword type="password" name="senha" placeholder="Senha" />
-      </div>
-      <br>
-      <button pButton type="button" (click)="logar()" label="Acessar" class="ui-button-success"></button>
-      <button pButton type="button" (click)="visibleSidebar = false" label="Voltar" class="ui-button-secondary"></button>
-      <div class="ui-g-12 ui-sm-12 ui-fluid">
-        <p-message severity="info" text="Será redirecionado para sua função."></p-message>
-      </div>
-
+      <form (submit)="logar($event)">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+          <p-inputMask type="text" mask="999.999.999-99" placeholder="CPF"></p-inputMask>
+        </div>
+        <br>
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="fa fa-user-secret"></i></span>
+          <input pPassword type="password" name="senha" placeholder="Senha" />
+        </div>
+        <br>
+        
+        <div class="ui-g-12 ui-sm-12 ui-fluid">
+          <p-message severity="info" text="Será redirecionado para sua função."></p-message>
+        </div>
+        <button pButton type="submit" label="Acessar" class="ui-button-success"></button>
+        <button pButton type="button" (click)="visibleSidebar = false" label="Voltar" class="ui-button-secondary"></button>
+      </form>
     </p-sidebar>
     <div class="ui-g-12">
       <h3>Acompanhamento de votação</h3>

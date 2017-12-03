@@ -21,16 +21,30 @@ export class InicioDcnComponent implements OnInit {
 
   titulo = 'Dia da Cultura Nerd 4';
   mensagens: Message[] = [];
+  avaliadores = [];
   visibleSidebar;
 
-  constructor(private location: Location, private rota: ActivatedRoute, private roteador: Router, private inicioDcnService: InicioDcnService) { }
+  constructor(private location: Location, private rotas: ActivatedRoute, private roteador: Router, private inicioDcnService: InicioDcnService) { }
 
   ngOnInit() {
   }
 
-  avaliador(){
+  avaliador() {
     this.visibleSidebar = true;
-    
+  }
+
+
+  outros;
+  logar(e) {
+    e.preventDefault();
+    console.log(e);
+    var username = e.target.elements[0].value;
+    var password = e.target.elements[1].value;
+
+    if (username == '058.791.281-21' && password == 'admin') {
+      this.roteador.navigate(['painelVotacao']);
+    }
+
   }
 
   voltar() {
