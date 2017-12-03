@@ -13,17 +13,19 @@ import { ContatoCadastroComponent } from './contato-cadastro/contato-cadastro.co
 import { ContatoEdicaoComponent } from './contato-edicao/contato-edicao.component';
 import { AvaliadorCadastroComponent } from './avaliador-cadastro/avaliador-cadastro.component';
 import { ResponsavelInscricaoComponent } from './responsavel-inscricao/responsavel-inscricao.component';
+import { InicioDcnComponent } from './inicio-dcn/inicio-dcn.component';
 
 import { ParticipanteService } from './service/participante.service';
 import { ContatoService } from './service/contato.service';
 import { AvaliadorService } from './service/avaliador.service';
 import { ResponsavelInscricaoService } from './service/responsavel-inscricao.service';
+import { InicioDcnService } from './service/inicio-dcn.service';
 
 import {SidebarModule} from 'primeng/primeng';
 import {SpinnerModule} from 'primeng/primeng';
 import {PasswordModule} from 'primeng/primeng';
 import {CheckboxModule} from 'primeng/primeng';
-
+import {MessageModule} from 'primeng/primeng';
 
 import {        
   ButtonModule,
@@ -41,9 +43,10 @@ const rotas: Routes = [
   { path: 'participantes', component: ParticipanteCadastroComponent },
   { path: 'avaliadores', component: AvaliadorCadastroComponent },
   { path: 'responsaveisInscricao', component: ResponsavelInscricaoComponent },
+  { path: 'inicioDcn', component: InicioDcnComponent },
   { path: 'contato', component: ContatoCadastroComponent },
   { path: 'contato/:id', component: ContatoEdicaoComponent },
-  { path: '', redirectTo: '/participantes', pathMatch: 'full' }
+  { path: '', redirectTo: '/inicioDcn', pathMatch: 'full' }
 ]
 
 @NgModule({
@@ -54,6 +57,7 @@ const rotas: Routes = [
     ContatoEdicaoComponent,
     AvaliadorCadastroComponent,
     ResponsavelInscricaoComponent,
+    InicioDcnComponent,
     NavbarComponent
   ],
   imports: [
@@ -72,6 +76,7 @@ const rotas: Routes = [
     SpinnerModule,
     PasswordModule,
     CheckboxModule,
+    MessageModule,
     RouterModule.forRoot(rotas)
   ],
   providers: [
@@ -79,6 +84,7 @@ const rotas: Routes = [
     ParticipanteService,
     ContatoService,
     ResponsavelInscricaoService,
+    InicioDcnService,
     ConfirmationService
   ],
   bootstrap: [AppComponent]
