@@ -1,31 +1,31 @@
 <div class="navbar">
-  {{ titulo }}  
+  {{ titulo }}
 </div>
 
 <div class="ui-g">
   <div class="ui-g-12">
-    <button pButton type="button" (click)="avaliador()" icon="fa-user" label="Acessar Painel"></button>                    
+    <button pButton type="button" (click)="avaliador()" icon="fa-user" label="Acessar Painel"></button>
     <p-sidebar [(visible)]="visibleSidebar" position="right" [baseZIndex]="10000">
-          <h1 style="font-weight:normal">Login</h1>
-          <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-              <p-inputMask type="text" mask="999.999.999-99" placeholder="CPF"></p-inputMask> 
-          </div>
-          <br>
-          <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="fa fa-user-secret"></i></span>
-              <input pPassword type="password" name="senha" placeholder="Senha" /> 
-          </div>
-          <br>
-          <button pButton type="button" (click)="logar()" label="Acessar" class="ui-button-success"></button>
-          <button pButton type="button" (click)="visibleSidebar = false" label="Voltar" class="ui-button-secondary"></button>
-
-          <p-message severity="info" text="Será redirecionado para sua função."></p-message>
-          
-    </p-sidebar>
-      <div class="ui-g-12">
-        <h3>Acompanhamento de votação</h3>
-        
+      <h1 style="font-weight:normal">Login</h1>
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+        <p-inputMask type="text" mask="999.999.999-99" placeholder="CPF"></p-inputMask>
       </div>
+      <br>
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-user-secret"></i></span>
+        <input pPassword type="password" name="senha" placeholder="Senha" />
+      </div>
+      <br>
+      <button pButton type="button" (click)="logar()" label="Acessar" class="ui-button-success"></button>
+      <button pButton type="button" (click)="visibleSidebar = false" label="Voltar" class="ui-button-secondary"></button>
+
+      <p-message severity="info" text="Será redirecionado para sua função."></p-message>
+
+    </p-sidebar>
+    <div class="ui-g-12">
+      <h3>Acompanhamento de votação</h3>
+
+    </div>
   </div>
 </div>

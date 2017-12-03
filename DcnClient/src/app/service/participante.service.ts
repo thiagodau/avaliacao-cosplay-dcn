@@ -22,6 +22,27 @@ export class ParticipanteService {
       .catch(this.lidaComErro);
   }
 
+  salvar(participante: Participante): Promise<Participante> {
+    return this.http.post(this.urlServicos, participante)
+      .toPromise()
+      .then(resposta => Promise.resolve(resposta))
+      .catch(this.lidaComErro);
+  }
+
+  atualizar(participante: Participante): Promise<Participante> {
+    return this.http.put(this.urlServicos, participante)
+      .toPromise()
+      .then(resposta => Promise.resolve(resposta))
+      .catch(this.lidaComErro);
+  }
+  
+  remover(_id: any): Promise<void> {
+    return this.http.delete(this.urlServicos + '/' + _id)
+      .toPromise()
+      .then(() => null)
+      .catch(this.lidaComErro);
+  }
+
   private lidaComErro(erro: any): Promise<any> {
     console.error('Ocorreu um erro', erro);
     return Promise.reject(erro.message || erro);

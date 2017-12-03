@@ -8,7 +8,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
-import { ParticipanteCadastroComponent } from './participante-cadastro/participante-cadastro.component';
+import { PainelVotacaoComponent } from './painel-votacao/painel-votacao.component';
+import { CadastroParticipanteComponent } from './cadastro-participante/cadastro-participante.component';
 import { ContatoCadastroComponent } from './contato-cadastro/contato-cadastro.component';
 import { ContatoEdicaoComponent } from './contato-edicao/contato-edicao.component';
 import { AvaliadorCadastroComponent } from './avaliador-cadastro/avaliador-cadastro.component';
@@ -40,7 +41,8 @@ import {
 import { NavbarComponent } from './navbar/navbar.component';
 
 const rotas: Routes = [
-  { path: 'participantes', component: ParticipanteCadastroComponent },
+  { path: 'painelVotacao', component: PainelVotacaoComponent },
+  { path: 'participantes', component: CadastroParticipanteComponent },
   { path: 'avaliadores', component: AvaliadorCadastroComponent },
   { path: 'responsaveisInscricao', component: ResponsavelInscricaoComponent },
   { path: 'inicioDcn', component: InicioDcnComponent },
@@ -52,7 +54,8 @@ const rotas: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ParticipanteCadastroComponent,
+    PainelVotacaoComponent,
+    CadastroParticipanteComponent,
     ContatoCadastroComponent,
     ContatoEdicaoComponent,
     AvaliadorCadastroComponent,

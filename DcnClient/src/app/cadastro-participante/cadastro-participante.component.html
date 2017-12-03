@@ -1,0 +1,33 @@
+<div class="navbar">
+  {{ tituloPagina }}
+</div>
+<div class="ui-g">
+  <div class="ui-g-12">
+    <!--<p-confirmDialog header="Avaliar" icon="fa fa-question-circle" width="425"></p-confirmDialog> -->
+    <h3>Cadastro de participante</h3>
+    <p-messages [(value)]="mensagens"></p-messages>
+    <form #frm="ngForm" (ngSubmit)="cadastrar(frm)">
+      <div class="ui-g-6 ui-sm-12 ui-fluid">
+        <label>Nome Completo:</label>
+        <input pInputText name="nome" ngModel required>
+      </div>
+      <div class="ui-g-6 ui-sm-12 ui-fluid">
+        <label>Personagem:</label>
+        <input pInputText name="personagem" ngModel required>
+      </div>
+      <div class="ui-g-12 ui-sm-12 ui-fluid">
+        <p-message severity="info" text="Cospobre deixe desmarcado o item Cosplay"></p-message>
+      </div>
+      <div class="ui-g-12 ui-sm-12 ui-fluid">
+        <label>Cosplay ?</label>
+        <p-checkbox name="cosplay" binary="false" ngModel cosplay></p-checkbox>
+      </div>
+
+      <!-- btn Salvar -->
+      <div class="ui-g-12 ui-sm-12 ui-fluid">
+        <button pButton type="submit" label="Cadastrar" [disabled]="frm.invalid"></button>
+      </div>
+    </form>
+
+  </div>
+</div>

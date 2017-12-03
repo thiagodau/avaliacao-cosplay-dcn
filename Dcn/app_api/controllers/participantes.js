@@ -14,7 +14,7 @@ module.exports.buscaTodos = function (req, res) {
 };
 
 module.exports.salva = function (req, res) {
-    Contato.create(req.body)
+    Participante.create(req.body)
         .then(
         function (participante) {
             res.json(participante);

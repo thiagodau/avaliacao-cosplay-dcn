@@ -11,11 +11,11 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { ConfirmDialogModule,ConfirmationService } from 'primeng/primeng';
 
 @Component({
-  selector: 'app-participante-cadastro',
-  templateUrl: './participante-cadastro.component.html',
-  styleUrls: ['./participante-cadastro.component.css']
+  selector: 'app-painel-votacao',
+  templateUrl: './painel-votacao.component.html',
+  styleUrls: ['./painel-votacao.component.css']
 })
-export class ParticipanteCadastroComponent implements OnInit {
+export class PainelVotacaoComponent implements OnInit {
 
   titulo = 'Participantes';
   tituloPagina = 'DCN 4 - Avaliação';
