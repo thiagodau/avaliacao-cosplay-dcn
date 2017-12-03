@@ -11,12 +11,17 @@ import { AppComponent } from './app.component';
 import { ParticipanteCadastroComponent } from './participante-cadastro/participante-cadastro.component';
 import { ContatoCadastroComponent } from './contato-cadastro/contato-cadastro.component';
 import { ContatoEdicaoComponent } from './contato-edicao/contato-edicao.component';
+import { AvaliadorCadastroComponent } from './avaliador-cadastro/avaliador-cadastro.component';
 
 import { ParticipanteService } from './service/participante.service';
 import { ContatoService } from './service/contato.service';
+import { AvaliadorService } from './service/avaliador.service';
 
 import {SidebarModule} from 'primeng/primeng';
 import {SpinnerModule} from 'primeng/primeng';
+import {PasswordModule} from 'primeng/primeng';
+import {CheckboxModule} from 'primeng/primeng';
+
 
 import {        
   ButtonModule,
@@ -32,6 +37,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 const rotas: Routes = [
   { path: 'participantes', component: ParticipanteCadastroComponent },
+  { path: 'avaliadores', component: AvaliadorCadastroComponent },
   { path: 'contato', component: ContatoCadastroComponent },
   { path: 'contato/:id', component: ContatoEdicaoComponent },
   { path: '', redirectTo: '/participantes', pathMatch: 'full' }
@@ -43,6 +49,7 @@ const rotas: Routes = [
     ParticipanteCadastroComponent,
     ContatoCadastroComponent,
     ContatoEdicaoComponent,
+    AvaliadorCadastroComponent,
     NavbarComponent
   ],
   imports: [
@@ -59,9 +66,12 @@ const rotas: Routes = [
     ConfirmDialogModule,
     SidebarModule,
     SpinnerModule,
+    PasswordModule,
+    CheckboxModule,
     RouterModule.forRoot(rotas)
   ],
   providers: [
+    AvaliadorService,
     ParticipanteService,
     ContatoService,
     ConfirmationService

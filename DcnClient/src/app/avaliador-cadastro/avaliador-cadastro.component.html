@@ -1,0 +1,67 @@
+<div class="navbar">
+  {{ tituloPagina }}
+</div>
+<div class="ui-g">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-messages [(value)]="mensagens"></p-messages>
+      <form #frm="ngForm" (ngSubmit)="cadastrar(frm)">
+        <div class="ui-g-6 ui-sm-12 ui-fluid">
+          <label>Nome do Avaliador:</label>
+          <input pInputText name="nome" ngModel required>
+        </div>
+        <div class="ui-g-6 ui-sm-12 ui-fluid">
+          <label>CPF:</label>
+          <p-inputMask mask="999.999.999-99" name="cpf" placeholder="999.999.999-99" ngModel required></p-inputMask>
+        </div>
+        <div class="ui-g-6 ui-sm-12 ui-fluid">
+          <label>Senha:</label>
+          <input pPassword type="password" name="senha" ngModel required/>
+        </div>
+        <div class="ui-g-2 ui-sm-12 ui-fluid">
+          <label>Interno:</label>
+          <p-checkbox name="interno" binary="true" ngModel interno></p-checkbox>
+        </div>
+        <div class="ui-g-2 ui-sm-12 ui-fluid">
+          <label>Presidente:</label>
+          <p-checkbox name="presidente" binary="true" ngModel presidente></p-checkbox>
+        </div>
+        <div class="ui-g-12 ui-fluid">
+          <button pButton type="submit" label="Cadastrar" [disabled]="frm.invalid"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+<!--
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="dropdown">
+        <button type="button" pButton icon="fa-list" iconPos="left" label="Menu Ações"></button>
+        <div class="dropdown-content">
+          <button type="button" pButton icon="fa-list" iconPos="left" label="Todos Registros" (click)="carregar()"></button>
+          <button type="button" pButton icon="fa-heart" iconPos="left" label="Somente Favoritos" (click)="listarFavoritos()"></button>
+        </div>
+      </div>
+      <p-confirmDialog acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
+      <p-dataTable #tabela [value]="contatos" [rows]="10" [paginator]="true" emptyMessage="Nenhum contato cadastrado">        
+        <p-column field="nome" header="Nome" [filter]="true" filterMatchMode="contains"></p-column>
+        <p-column field="telefone" header="Telefone"></p-column>
+        <p-column field="endereco" header="Endereço"></p-column>
+        <p-column field="email" header="E-mail"></p-column>
+        <p-column header="Ações">
+          <ng-template let-contato="rowData" pTemplate="body">
+            <div class="alinhamentoCelulas">
+              <button type="button" pButton (click)="remover(contato)" icon="fa-trash"></button>
+              <span *ngIf="contato.fav"> 
+                  <button type="button" pButton (click)="favoritar(contato)" icon="fa-heart"></button>
+              </span>   
+              <span *ngIf="!contato.fav"> 
+                <button type="button" pButton (click)="favoritar(contato)" icon="fa-heart-o"></button>
+              </span> 
+            </div>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </div> -->
+</div>
