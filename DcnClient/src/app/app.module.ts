@@ -12,10 +12,12 @@ import { ParticipanteCadastroComponent } from './participante-cadastro/participa
 import { ContatoCadastroComponent } from './contato-cadastro/contato-cadastro.component';
 import { ContatoEdicaoComponent } from './contato-edicao/contato-edicao.component';
 import { AvaliadorCadastroComponent } from './avaliador-cadastro/avaliador-cadastro.component';
+import { ResponsavelInscricaoComponent } from './responsavel-inscricao/responsavel-inscricao.component';
 
 import { ParticipanteService } from './service/participante.service';
 import { ContatoService } from './service/contato.service';
 import { AvaliadorService } from './service/avaliador.service';
+import { ResponsavelInscricaoService } from './service/responsavel-inscricao.service';
 
 import {SidebarModule} from 'primeng/primeng';
 import {SpinnerModule} from 'primeng/primeng';
@@ -38,6 +40,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 const rotas: Routes = [
   { path: 'participantes', component: ParticipanteCadastroComponent },
   { path: 'avaliadores', component: AvaliadorCadastroComponent },
+  { path: 'responsaveisInscricao', component: ResponsavelInscricaoComponent },
   { path: 'contato', component: ContatoCadastroComponent },
   { path: 'contato/:id', component: ContatoEdicaoComponent },
   { path: '', redirectTo: '/participantes', pathMatch: 'full' }
@@ -50,6 +53,7 @@ const rotas: Routes = [
     ContatoCadastroComponent,
     ContatoEdicaoComponent,
     AvaliadorCadastroComponent,
+    ResponsavelInscricaoComponent,
     NavbarComponent
   ],
   imports: [
@@ -74,6 +78,7 @@ const rotas: Routes = [
     AvaliadorService,
     ParticipanteService,
     ContatoService,
+    ResponsavelInscricaoService,
     ConfirmationService
   ],
   bootstrap: [AppComponent]

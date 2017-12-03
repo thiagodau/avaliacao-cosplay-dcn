@@ -1,0 +1,21 @@
+<div class="navbar">
+  {{ tituloPagina }}
+</div>
+<div class="ui-g">
+  <div class="ui-g-12">
+    <p-messages [(value)]="mensagens"></p-messages>
+    <form #frm="ngForm" (ngSubmit)="cadastrar(frm)">
+      <div class="ui-g-12 ui-sm-12 ui-fluid">
+        <label>Nome do Responsável:</label>
+        <input pInputText name="nome" ngModel required>
+      </div>
+      <div class="ui-g-4 ui-sm-12 ui-fluid">
+        <label>Senha:</label>
+        <input pPassword type="password" name="senha" ngModel required/>
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <button pButton type="submit" label="Cadastrar" [disabled]="frm.invalid"></button>
+      </div>
+    </form>
+  </div>
+</div>

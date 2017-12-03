@@ -3,6 +3,7 @@ var router = express.Router();
 var ctrlContatos = require('../controllers/contatos');
 var ctrlParticipantes = require('../controllers/participantes');
 var ctrlAvaliadores = require('../controllers/avaliadores');
+var ctrlResponsaveisInscricao = require('../controllers/responsaveisInscricao');
 
 /* GET home page. */
 router.get('/contatos', ctrlContatos.buscaTodos);
@@ -13,5 +14,9 @@ router.get('/participantes', ctrlParticipantes.buscaTodos);
 /* Avaliadores */
 router.get('/avaliadores', ctrlAvaliadores.buscaTodos);
 router.post('/avaliadores', ctrlAvaliadores.salva);
+/* Responsaveis Inscricao */
+router.get('/responsaveisInscricao', ctrlResponsaveisInscricao.buscaTodos);
+router.post('/responsaveisInscricao', ctrlResponsaveisInscricao.salva);
+
 
 module.exports = router;

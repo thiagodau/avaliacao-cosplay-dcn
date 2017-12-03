@@ -7,9 +7,8 @@ import { Participante } from '../participante/participante';
 import { ParticipanteService } from '../service/participante.service';
 
 import { Message } from 'primeng/components/common/api';
-//import { ConfirmationService } from 'primeng/primeng';
-import {MessageService} from 'primeng/components/common/messageservice';
-import {ConfirmDialogModule,ConfirmationService} from 'primeng/primeng';
+import { MessageService } from 'primeng/components/common/messageservice';
+import { ConfirmDialogModule,ConfirmationService } from 'primeng/primeng';
 
 @Component({
   selector: 'app-participante-cadastro',
