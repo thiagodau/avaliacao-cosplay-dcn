@@ -13,3 +13,7 @@ forma de avaliação
 
 validacao ???
 https://tableless.com.br/autenticar-usuarios-com-jwt-e-passport/
+
+Lembrar de fazer verificação se ja foi votado o participante,
+controle de erro de soma de pontos indevida,
+Se Avaliador ja votou em Participante, bloquear outra avaliacao no mesmo participante ( erro nao tratado pode somar mais pontos ao participante)

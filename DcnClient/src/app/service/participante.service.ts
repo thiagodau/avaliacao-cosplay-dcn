@@ -28,14 +28,14 @@ export class ParticipanteService {
       .then(resposta => Promise.resolve(resposta))
       .catch(this.lidaComErro);
   }
-
-  atualizar(participante: Participante): Promise<Participante> {
+  
+  avaliacao(participante: Participante): Promise<Participante> {
     return this.http.put(this.urlServicos, participante)
       .toPromise()
       .then(resposta => Promise.resolve(resposta))
       .catch(this.lidaComErro);
   }
-  
+
   remover(_id: any): Promise<void> {
     return this.http.delete(this.urlServicos + '/' + _id)
       .toPromise()

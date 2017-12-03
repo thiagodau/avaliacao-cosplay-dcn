@@ -12,6 +12,7 @@ router.delete('/contatos/:id', ctrlContatos.remove);
 /* Participantes */
 router.get('/participantes', ctrlParticipantes.buscaTodos);
 router.post('/participantes', ctrlParticipantes.salva);
+router.put('/participantes', ctrlParticipantes.avaliacao);
 /* Avaliadores */
 router.get('/avaliadores', ctrlAvaliadores.buscaTodos);
 router.post('/avaliadores', ctrlAvaliadores.salva);

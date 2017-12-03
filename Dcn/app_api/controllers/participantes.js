@@ -26,6 +26,19 @@ module.exports.salva = function (req, res) {
         );
 };
 
+module.exports.avaliacao = function (req, res) {
+    Participante.findByIdAndUpdate(req.body._id, req.body).exec()
+        .then(
+        function (participante) {
+            res.json(participante);
+        },
+        function (erro) {
+            console.error(erro);
+            res.status(500).json(erro);
+        }
+        );
+};
+
 module.exports.remove = function (req, res) {
     var _id = req.params.id;
     Participante.remove({ "_id": _id }).exec()

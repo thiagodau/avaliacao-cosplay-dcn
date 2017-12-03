@@ -12,6 +12,9 @@ var participante = new mongoose.Schema({
     cosplay: {
         type: Boolean,
         required: true
+    },
+    pontos: {
+        type: Number
     }
 });
 
