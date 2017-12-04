@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
 import { InicioDcnService } from '../service/inicio-dcn.service';
+import { UserService } from '../service/user.service';
 
 import { Message } from 'primeng/components/common/api';
 
@@ -24,7 +25,11 @@ export class InicioDcnComponent implements OnInit {
   avaliadores = [];
   visibleSidebar;
 
-  constructor(private location: Location, private rotas: ActivatedRoute, private roteador: Router, private inicioDcnService: InicioDcnService) { }
+  constructor(private location: Location, 
+    private rotas: ActivatedRoute, 
+    private roteador: Router, 
+    private inicioDcnService: InicioDcnService,
+    private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -42,6 +47,7 @@ export class InicioDcnComponent implements OnInit {
     var password = e.target.elements[1].value;
 
     if (username == '058.791.281-21' && password == 'admin') {
+      this.userService.setUserLogin();
       this.roteador.navigate(['painelVotacao']);
     }
 

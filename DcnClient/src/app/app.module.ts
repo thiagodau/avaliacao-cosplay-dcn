@@ -21,6 +21,8 @@ import { ContatoService } from './service/contato.service';
 import { AvaliadorService } from './service/avaliador.service';
 import { ResponsavelInscricaoService } from './service/responsavel-inscricao.service';
 import { InicioDcnService } from './service/inicio-dcn.service';
+import { UserService } from './service/user.service';
+import { AuthguardGuard } from './service/authguard.guard';
 
 import {SidebarModule} from 'primeng/primeng';
 import {SpinnerModule} from 'primeng/primeng';
@@ -42,7 +44,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 const rotas: Routes = [
   { path: 'inicioDcn', component: InicioDcnComponent },
-  { path: 'painelVotacao', component: PainelVotacaoComponent },
+  { path: 'painelVotacao', canActivate: [AuthguardGuard] ,component: PainelVotacaoComponent },
   { path: 'participantes', component: CadastroParticipanteComponent },
   { path: 'avaliadores', component: AvaliadorCadastroComponent },
   { path: 'responsaveisInscricao', component: ResponsavelInscricaoComponent },
@@ -88,7 +90,9 @@ const rotas: Routes = [
     ContatoService,
     ResponsavelInscricaoService,
     InicioDcnService,
-    ConfirmationService
+    ConfirmationService,
+    UserService,
+    AuthguardGuard
   ],
   bootstrap: [AppComponent]
 })

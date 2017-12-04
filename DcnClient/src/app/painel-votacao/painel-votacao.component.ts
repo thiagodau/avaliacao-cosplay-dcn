@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 
 import { Participante } from '../participante/participante';
 import { ParticipanteService } from '../service/participante.service';
+import { UserService } from '../service/user.service';
 
 import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -30,7 +31,8 @@ export class PainelVotacaoComponent implements OnInit {
   constructor(
     private ParticipanteService: ParticipanteService,
     private roteador: Router,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.carregar();
