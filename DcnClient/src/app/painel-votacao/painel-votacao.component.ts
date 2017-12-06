@@ -30,6 +30,7 @@ export class PainelVotacaoComponent implements OnInit {
   visibleSidebar2;
   cc;
   participanteSelecionado;
+  visibleSidebarAvaliacao;
 
   constructor(
     private ParticipanteService: ParticipanteService,
@@ -57,15 +58,32 @@ export class PainelVotacaoComponent implements OnInit {
       .then(
       (avaliadores) => {
         this.presidente = avaliadores;
-        //alert(this.presidente[0].presidente)
       },
       (erro) => {
         this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os avaliadores' });
       });
+
   }
 
-  iniciarAvaliacao(){
-     alert("Avaliacao Iniciada")
+  abrirValidacaoPresidente() {
+    this.visibleSidebarAvaliacao = true;
+  }
+
+  iniciarAvaliacao(event) {
+    event.preventDefault();
+    var cpfAutorizacao = event.target.elements[0].value;
+
+    for (var index = 0; index < this.presidente.length; index++) {
+      var cpfPresidente = this.presidente[index].cpf;
+      //verifica se o cpf e do presidente
+      if (cpfAutorizacao == cpfPresidente) {
+        alert("Avaliacao Iniciada")
+      }else {
+        alert("Nao autorizado")
+      }
+
+    }
+
   }
 
   avaliarCosplay(participante) {

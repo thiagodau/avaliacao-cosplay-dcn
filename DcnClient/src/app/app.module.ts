@@ -44,7 +44,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 const rotas: Routes = [
   { path: 'inicioDcn', component: InicioDcnComponent },
-  { path: 'painelVotacao', canActivate: [AuthguardGuard], component: PainelVotacaoComponent },
+  { path: 'painelVotacao', /*canActivate: [AuthguardGuard],*/ component: PainelVotacaoComponent },
   { path: 'participantes', component: CadastroParticipanteComponent },
   { path: 'avaliadores', component: AvaliadorCadastroComponent },
   { path: 'responsaveisInscricao', component: ResponsavelInscricaoComponent },
