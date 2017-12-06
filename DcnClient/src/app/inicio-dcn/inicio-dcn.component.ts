@@ -10,6 +10,9 @@ import 'rxjs/add/operator/switchMap';
 
 import { InicioDcnService } from '../service/inicio-dcn.service';
 import { UserService } from '../service/user.service';
+import { ParticipanteService } from '../service/participante.service';
+import { AvaliadorService } from '../service/avaliador.service';
+import { ResponsavelInscricaoService } from '../service/responsavel-inscricao.service';
 
 import { Message } from 'primeng/components/common/api';
 
@@ -24,37 +27,81 @@ export class InicioDcnComponent implements OnInit {
   mensagens: Message[] = [];
   avaliadores = [];
   visibleSidebar;
+  responsaveis = [];
 
-  constructor(private location: Location, 
-    private rotas: ActivatedRoute, 
-    private roteador: Router, 
+  constructor(private location: Location,
+    private rotas: ActivatedRoute,
+    private roteador: Router,
     private inicioDcnService: InicioDcnService,
+    private ParticipanteService: ParticipanteService,
+    private AvaliadorService: AvaliadorService,
+    private ResponsavelInscricaoService: ResponsavelInscricaoService,
     private userService: UserService) { }
 
   ngOnInit() {
+    this.carregar();
+  }
+
+  carregar() {
+    this.mensagens = [];
+
+    this.ResponsavelInscricaoService.recuperarTodos()
+      .then(
+      (responsaveis) => {
+        this.responsaveis = responsaveis;
+      },
+      (erro) => {
+        this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os contatos' });
+      });
+
+    this.AvaliadorService.recuperarTodos()
+      .then(
+      (avaliadores) => {
+        this.avaliadores = avaliadores;
+      },
+      (erro) => {
+        this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os avaliadores' });
+      });
   }
 
   avaliador() {
     this.visibleSidebar = true;
   }
 
-
-  outros;
   logar(e) {
     e.preventDefault();
     console.log(e);
-    var username = e.target.elements[0].value;
+    var cpfLogin = e.target.elements[0].value;
     var password = e.target.elements[1].value;
 
-    if (username == '058.791.281-21' && password == 'admin') {
-      this.userService.setUserLogin();
-      this.roteador.navigate(['painelVotacao']);
+    //Verificacao de Login para Avaliadores
+    for (var index = 0; index < this.avaliadores.length; index++) {
+      var cpf = this.avaliadores[index].cpf;
+      var senha = this.avaliadores[index].senha;
+      //console.log(cpf)
+
+      if (cpfLogin == cpf && password == senha) {
+        this.userService.setUserLogin();
+        cpf = null;
+        this.roteador.navigate(['painelVotacao']);
+      }
     }
 
+    //Verificacao de Login para Responsaveis Inscricao
+    for (var index = 0; index < this.responsaveis.length; index++) {
+      var cpf = this.responsaveis[index].cpf;
+      var senha = this.responsaveis[index].senha;
+      //console.log(cpf)
+      
+      if (cpfLogin == cpf && password == senha) {
+        cpf = null
+        this.userService.setUserLogin();
+        this.roteador.navigate(['painelVotacao']);
+      }
+    }
   }
 
   voltar() {
     this.location.back();
   }
-
 }

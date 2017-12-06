@@ -5,14 +5,18 @@
   <div class="ui-g-12">
     <p-messages [(value)]="mensagens"></p-messages>
     <form #frm="ngForm" (ngSubmit)="cadastrar(frm)">
-      <div class="ui-g-12 ui-sm-12 ui-fluid">
+      <div class="ui-g-8 ui-sm-12 ui-fluid">
         <label>Nome do Responsável:</label>
         <input pInputText name="nome" ngModel required>
       </div>
-      <div class="ui-g-4 ui-sm-12 ui-fluid">
+      <div class="ui-g-8 ui-sm-12 ui-fluid">
         <label>Senha:</label>
         <input pPassword type="password" name="senha" ngModel required/>
       </div>
+      <div class="ui-g-4 ui-sm-12 ui-fluid">
+          <label>CPF:</label>
+          <p-inputMask mask="999.999.999-99" name="cpf" placeholder="999.999.999-99" ngModel required></p-inputMask>
+        </div>
       <div class="ui-g-12 ui-fluid">
         <button pButton type="submit" label="Cadastrar" [disabled]="frm.invalid"></button>
       </div>

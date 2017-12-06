@@ -15,6 +15,7 @@ router.post('/participantes', ctrlParticipantes.salva);
 router.put('/participantes', ctrlParticipantes.avaliacao);
 /* Avaliadores */
 router.get('/avaliadores', ctrlAvaliadores.buscaTodos);
+router.get('/avaliadores/presidente', ctrlAvaliadores.buscaPresidente);
 router.post('/avaliadores', ctrlAvaliadores.salva);
 /* Responsaveis Inscricao */
 router.get('/responsaveisInscricao', ctrlResponsaveisInscricao.buscaTodos);

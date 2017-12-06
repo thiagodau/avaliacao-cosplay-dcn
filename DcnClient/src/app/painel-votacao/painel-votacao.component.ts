@@ -6,6 +6,8 @@ import { Router } from "@angular/router";
 import { Participante } from '../participante/participante';
 import { ParticipanteService } from '../service/participante.service';
 import { UserService } from '../service/user.service';
+import { Avaliador } from '../avaliador/avaliador';
+import { AvaliadorService } from '../service/avaliador.service';
 
 import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -23,6 +25,7 @@ export class PainelVotacaoComponent implements OnInit {
   mensagens: Message[] = [];
   erro = '';
   participantes = [];
+  presidente = [];
   visibleSidebar;
   visibleSidebar2;
   cc;
@@ -32,7 +35,8 @@ export class PainelVotacaoComponent implements OnInit {
     private ParticipanteService: ParticipanteService,
     private roteador: Router,
     private confirmationService: ConfirmationService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private AvaliadorService: AvaliadorService) { }
 
   ngOnInit() {
     this.carregar();
@@ -48,6 +52,20 @@ export class PainelVotacaoComponent implements OnInit {
       (erro) => {
         this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os contatos' });
       });
+
+    this.AvaliadorService.recuperarPresidente()
+      .then(
+      (avaliadores) => {
+        this.presidente = avaliadores;
+        //alert(this.presidente[0].presidente)
+      },
+      (erro) => {
+        this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os avaliadores' });
+      });
+  }
+
+  iniciarAvaliacao(){
+     alert("Avaliacao Iniciada")
   }
 
   avaliarCosplay(participante) {
@@ -61,7 +79,7 @@ export class PainelVotacaoComponent implements OnInit {
     }
     this.participanteSelecionado = participante;
   }
-  
+
   avaliarCospobre(participante) {
     this.visibleSidebar = false;
     this.visibleSidebar2 = true;
@@ -79,7 +97,7 @@ export class PainelVotacaoComponent implements OnInit {
     this.visibleSidebar = false;
     this.somaCosplay = v + v1 + v2 + v3;
     this.participanteSelecionado.pontos = this.somaCosplay + this.participanteSelecionado.pontos;
-    
+
     participante = this.participanteSelecionado;
     console.log(this.participanteSelecionado._id, this.participanteSelecionado.nome, this.participanteSelecionado.pontos)
     this.ParticipanteService.avaliacao(participante)
@@ -99,7 +117,7 @@ export class PainelVotacaoComponent implements OnInit {
     this.visibleSidebar2 = false;
     this.somaCospobre = valorCriterio1 + valorCriterio2 + valorCriterio3 + valorCriterio4 + valorCriterio5;
     this.participanteSelecionado.pontos = this.somaCospobre + this.participanteSelecionado.pontos;
-    
+
     participante = this.participanteSelecionado;
     //console.log(this.participanteSelecionado._id, this.participanteSelecionado.nome, this.participanteSelecionado.pontos)
     this.ParticipanteService.avaliacao(participante)

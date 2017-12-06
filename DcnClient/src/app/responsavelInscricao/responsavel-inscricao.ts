@@ -3,4 +3,5 @@ export class ResponsavelInscricao {
     public _id: number;
     public nome: string;
     public senha: string;
+    public cpf: string;
 }

@@ -13,6 +13,19 @@ module.exports.buscaTodos = function (req, res) {
         );
 };
 
+module.exports.buscaPresidente = function (req, res) {
+    Avaliador.find({"presidente" : true}).exec()
+        .then(
+        function (avaliadores) {
+            res.json(avaliadores);
+        },
+        function (erro) {
+            console.error(erro);
+            res.status(500).json(erro);
+        }
+        );
+};
+
 module.exports.salva = function (req, res) {
     Avaliador.create(req.body)
         .then(

@@ -22,6 +22,13 @@ export class AvaliadorService {
       .catch(this.lidaComErro);
   }
 
+  recuperarPresidente(): Promise<Avaliador[]> {
+    return this.http.get(this.urlServicos + "/presidente")
+      .toPromise()
+      .then(resposta => Promise.resolve(resposta))
+      .catch(this.lidaComErro);
+  }
+
   recuperar(_id: any): Promise<Avaliador> {
     return this.http.get(this.urlServicos + '/' + _id)
       .toPromise()

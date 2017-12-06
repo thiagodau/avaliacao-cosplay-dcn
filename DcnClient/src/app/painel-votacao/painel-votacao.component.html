@@ -3,6 +3,9 @@
 </div>
 <div class="ui-g">
     <div class="ui-g-12">
+        <button pButton type="button" icon="fa-legal" (click)="iniciarAvaliacao()" [disabled]="true" label="Iniciar Avaliação"></button>
+    </div>
+    <div class="ui-g-12">
         <!--<p-confirmDialog header="Avaliar" icon="fa fa-question-circle" width="425"></p-confirmDialog> -->
         <p-dataTable #tabela [value]="participantes" [rows]="10" [paginator]="false" emptyMessage="Nenhum participante cadastrado">
             <p-column field="personagem" header="Cosplay / Cospobre" [filter]="true" filterMatchMode="contains"></p-column>
@@ -34,7 +37,8 @@
                                     <p-spinner id="criterio2" size="5" [(ngModel)]="val3" [step]="0.25" [min]="0" [max]="2.5"></p-spinner>
                                 </li>
                             </ol>
-                            <button pButton type="button" (click)="salvarAvaliacaoCosplay(val, val1, val2, val3, participante)" label="Salvar Avaliação" class="ui-button-success"></button>
+                            <button pButton type="button" (click)="salvarAvaliacaoCosplay(val, val1, val2, val3, participante)" label="Salvar Avaliação"
+                                class="ui-button-success"></button>
                             <button pButton type="button" (click)="visibleSidebar = false" label="Voltar" class="ui-button-secondary"></button>
                         </p-sidebar>
 

@@ -9,6 +9,10 @@ var responsavelInscricao = new mongoose.Schema({
         type: String,
         required: true
     },
+    cpf: {
+        type: String,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('ResponsavelInscricao', responsavelInscricao);
