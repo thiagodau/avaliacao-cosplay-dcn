@@ -5,8 +5,8 @@
 <div class="ui-g">
   <div class="ui-g-12">
     <button pButton type="button" (click)="avaliador()" icon="fa-user" label="Acessar Painel"></button>
-    <button pButton type="button" (click)="cadastrarResponsaveis()" icon="fa-user" label="Cadastrar Responsavel Inscrição"></button>
-    <button pButton type="button" (click)="cadastrarAvaliadores()" icon="fa-user" label="Cadastrar Avaliadores"></button>
+    <button pButton type="button" (click)="cadastrarResponsaveis()" icon="fa-book" label="Cadastrar Responsavel Inscrição"></button>
+    <button pButton type="button" (click)="cadastrarAvaliadores()" icon="fa-group" label="Cadastrar Avaliadores"></button>
     <p-sidebar [(visible)]="visibleSidebar" position="left" [baseZIndex]="10000">
       <h1 style="font-weight:normal">Login</h1>
       <form (submit)="logar($event)">
@@ -25,10 +25,18 @@
         </div>
         <button pButton type="submit" label="Acessar" class="ui-button-success"></button>
         <button pButton type="button" (click)="visibleSidebar = false" label="Voltar" class="ui-button-secondary"></button>
+
+        <div class="ui-g-12 ui-sm-12 ui-fluid">
+          <figure class="figure">
+            <img [src]="netImage" class="figure-img img-fluid rounded" width="200px">
+          </figure>
+        </div>
       </form>
     </p-sidebar>
+    <!-- Body -->
     <div class="ui-g-12">
       <h3>Acompanhamento de votação</h3>
+      <button (click)="btnRefresh()">Refresh</button>
       <h5>Cosplay</h5>
       <p-dataTable #tabela [value]="participantesCosplay" [rows]="10" [paginator]="false" emptyMessage="Nenhum participante cadastrado">
         <p-column field="personagem" header="Cosplay"></p-column>

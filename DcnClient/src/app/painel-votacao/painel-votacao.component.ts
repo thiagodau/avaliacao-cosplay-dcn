@@ -192,11 +192,11 @@ export class PainelVotacaoComponent implements OnInit {
     }
   }
 
-  somaCosplay;
+  
   salvarAvaliacaoCosplay(v, v1, v2, v3, participante) {
     this.visibleSidebar = false;
-    this.somaCosplay = v + v1 + v2 + v3;
-    this.participanteSelecionado.pontos = this.somaCosplay + this.participanteSelecionado.pontos;
+    var somaCosplay = v + v1 + v2 + v3;
+    this.participanteSelecionado.pontos = somaCosplay + this.participanteSelecionado.pontos;
 
     participante = this.participanteSelecionado;
     console.log(this.participanteSelecionado._id, this.participanteSelecionado.nome, this.participanteSelecionado.pontos)
@@ -212,14 +212,12 @@ export class PainelVotacaoComponent implements OnInit {
       });
   }
 
-  somaCospobre;
   salvarAvaliacaoCospobre(valorCriterio1, valorCriterio2, valorCriterio3, valorCriterio4, valorCriterio5, participante) {
     this.visibleSidebar2 = false;
-    this.somaCospobre = valorCriterio1 + valorCriterio2 + valorCriterio3 + valorCriterio4 + valorCriterio5;
-    this.participanteSelecionado.pontos = this.somaCospobre + this.participanteSelecionado.pontos;
+    var somaCospobre = valorCriterio1 + valorCriterio2 + valorCriterio3 + valorCriterio4 + valorCriterio5;
+    this.participanteSelecionado.pontos = somaCospobre + this.participanteSelecionado.pontos;
 
     participante = this.participanteSelecionado;
-    //console.log(this.participanteSelecionado._id, this.participanteSelecionado.nome, this.participanteSelecionado.pontos)
     this.ParticipanteService.avaliacao(participante)
       .then(
       (participante) => {

@@ -30,6 +30,7 @@ export class InicioDcnComponent implements OnInit {
   participantesCospobre = [];
   visibleSidebar;
   responsaveis = [];
+  netImage:any = "../assets/verificacao.png";
 
   constructor(private location: Location,
     private rotas: ActivatedRoute,
@@ -85,6 +86,10 @@ export class InicioDcnComponent implements OnInit {
         this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os contatos' });
       });
 
+  }
+
+  btnRefresh(){
+    alert("Não ta funcionando ainda rs")
   }
 
   avaliador() {

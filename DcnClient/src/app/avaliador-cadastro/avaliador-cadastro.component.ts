@@ -7,7 +7,7 @@ import { AvaliadorService } from '../service/avaliador.service';
 
 import { Message } from 'primeng/components/common/api';
 import { ConfirmationService } from 'primeng/primeng';
-import {MessageService} from 'primeng/components/common/messageservice';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @Component({
   selector: 'app-avaliador-cadastro',
@@ -21,7 +21,10 @@ export class AvaliadorCadastroComponent implements OnInit {
   mensagens: Message[] = [];
   erro = '';
   avaliadores = [];
-  
+  presidente = [];
+  checkedI = false;
+  checkedP = false;
+
   constructor(private avaliadorService: AvaliadorService, private roteador: Router, private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
@@ -38,24 +41,50 @@ export class AvaliadorCadastroComponent implements OnInit {
       (erro) => {
         this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os avaliadores' });
       });
+
+    this.avaliadorService.recuperarPresidente()
+      .then(
+      (avaliadores) => {
+        this.presidente = avaliadores;
+      },
+      (erro) => {
+        this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar o presidente' });
+      });
   }
 
 
-  
+
   cadastrar(formulario: FormControl) {
     this.mensagens = [];
-    this.avaliadorService.salvar(formulario.value)
-      .then(
-      () => {
-        var nome = formulario.value.nome;
-        formulario.reset();
-        this.carregar();
-        this.mensagens.push({ severity: 'success', summary: 'Sucesso', detail: 'Avaliador "' + nome + '" cadastrado' });
-      },
-      (erro) => {
-        this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar cadastrar o avaliador' });
-      }
-      );
+
+    if (this.presidente[0] != null) { //se o presidente ja existe
+      formulario.value.presidente = false;
+      this.avaliadorService.salvar(formulario.value)
+        .then(
+        () => {
+          var nome = formulario.value.nome;
+          formulario.reset();
+          this.carregar();
+          this.mensagens.push({ severity: 'success', summary: 'Sucesso', detail: 'Avaliador "' + nome + '" cadastrado' });
+        },
+        (erro) => {
+          this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar cadastrar o avaliador' });
+        }
+        );
+    } else { //se presidente nao existe
+      this.avaliadorService.salvar(formulario.value)
+        .then(
+        () => {
+          var nome = formulario.value.nome;
+          formulario.reset();
+          this.carregar();
+          this.mensagens.push({ severity: 'success', summary: 'Sucesso', detail: 'Avaliador "' + nome + '" cadastrado e é o Presidente' });
+        },
+        (erro) => {
+          this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar cadastrar o avaliador/presidente' });
+        }
+        );
+    }
   }
 
   remover(avaliador) {
