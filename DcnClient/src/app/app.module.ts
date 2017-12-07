@@ -22,13 +22,16 @@ import { AvaliadorService } from './service/avaliador.service';
 import { ResponsavelInscricaoService } from './service/responsavel-inscricao.service';
 import { InicioDcnService } from './service/inicio-dcn.service';
 import { UserService } from './service/user.service';
+import { AvaliacaoService } from './service/avaliacao.service';
 import { AuthguardGuard } from './service/authguard.guard';
+
 
 import {SidebarModule} from 'primeng/primeng';
 import {SpinnerModule} from 'primeng/primeng';
 import {PasswordModule} from 'primeng/primeng';
 import {CheckboxModule} from 'primeng/primeng';
 import {MessageModule} from 'primeng/primeng';
+import {DropdownModule} from 'primeng/primeng';
 
 import {        
   ButtonModule,
@@ -82,6 +85,7 @@ const rotas: Routes = [
     PasswordModule,
     CheckboxModule,
     MessageModule,
+    DropdownModule,
     RouterModule.forRoot(rotas)
   ],
   providers: [
@@ -92,6 +96,7 @@ const rotas: Routes = [
     InicioDcnService,
     ConfirmationService,
     UserService,
+    AvaliacaoService,
     AuthguardGuard
   ],
   bootstrap: [AppComponent]

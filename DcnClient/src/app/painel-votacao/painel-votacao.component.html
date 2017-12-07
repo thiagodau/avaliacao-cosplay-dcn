@@ -4,26 +4,30 @@
 <div class="ui-g">
     <div class="ui-g-12">
         <button pButton type="button" icon="fa-legal" (click)="abrirValidacaoPresidente()" label="Iniciar Avaliação"></button>
-
         <p-sidebar [(visible)]="visibleSidebarAvaliacao" position="left" [baseZIndex]="10000">
             <h1 style="font-weight:normal">Informe seu cpf presidente:</h1>
-            <form (submit)="iniciarAvaliacao($event)">
-                <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-                    <p-inputMask type="text" mask="999.999.999-99" placeholder="CPF"></p-inputMask>
+            <form #frm="ngForm" (ngSubmit)="iniciarAvaliacao($event, frm)">
+                <div class="ui-g-12 ui-sm-12 ui-fluid">
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                        <p-inputMask type="text" name="cpf" mask="999.999.999-99" placeholder="CPF" ngModel required></p-inputMask>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-sm-12 ui-fluid">
+                    <label>Iniciar ?</label>
+                    <p-checkbox name="iniciada" binary="true" ngModel iniciada></p-checkbox>
                 </div>
                 <br>
                 <div class="ui-g-8">
-                    <button pButton type="submit" label="Iniciar Avaliação" class="ui-button-success"></button>
-                    <button pButton type="button" (click)="visibleSidebar = false" label="Ainda não.." class="ui-button-secondary"></button>
+                    <button pButton type="submit" label="Iniciar Avaliação" class="ui-button-success" [disabled]="frm.invalid"></button>
                 </div>
             </form>
         </p-sidebar>
     </div>
     <div class="ui-g-12">
-        <!--<p-confirmDialog header="Avaliar" icon="fa fa-question-circle" width="425"></p-confirmDialog> -->
         <p-dataTable #tabela [value]="participantes" [rows]="10" [paginator]="false" emptyMessage="Nenhum participante cadastrado">
             <p-column field="personagem" header="Cosplay / Cospobre" [filter]="true" filterMatchMode="contains"></p-column>
+            <p-column field="nome" header="Nome do Participante" [filter]="true" filterMatchMode="contains"></p-column>
             <p-column header="Avaliar" [style]="{'width':'20%'}">
                 <ng-template let-participante="rowData" pTemplate="body">
                     <div class="alinhamentoCelulas" *ngIf="participante.cosplay">

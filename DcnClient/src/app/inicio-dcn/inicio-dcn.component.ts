@@ -96,7 +96,7 @@ export class InicioDcnComponent implements OnInit {
       if (cpfLogin == cpf && password == senha) {
         cpf = null
         this.userService.setUserLogin();
-        this.roteador.navigate(['painelVotacao']);
+        this.roteador.navigate(['participantes']);
       }
     }
   }

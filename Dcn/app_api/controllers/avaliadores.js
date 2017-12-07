@@ -40,7 +40,7 @@ module.exports.salva = function (req, res) {
 };
 
 module.exports.remove = function (req, res) {
-    var _id = req.params.id;
+    var _id = req.params._id;
     Avaliador.remove({ "_id": _id }).exec()
         .then(
         function () {

@@ -39,6 +39,32 @@ module.exports.avaliacao = function (req, res) {
         );
 };
 
+module.exports.buscaPontuacaoCosplay = function (req, res) {
+    Participante.find({'cosplay' : true}).sort({ pontos: -1 }).exec()
+        .then(
+        function (participantes) {
+            res.json(participantes);
+        },
+        function (erro) {
+            console.error(erro);
+            res.status(500).json(erro);
+        }
+        );
+};
+
+module.exports.buscaPontuacaoCospobre = function (req, res) {
+    Participante.find({'cosplay' : false}).sort({ pontos: -1 }).exec()
+        .then(
+        function (participantes) {
+            res.json(participantes);
+        },
+        function (erro) {
+            console.error(erro);
+            res.status(500).json(erro);
+        }
+        );
+};
+
 module.exports.remove = function (req, res) {
     var _id = req.params.id;
     Participante.remove({ "_id": _id }).exec()

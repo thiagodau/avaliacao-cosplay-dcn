@@ -8,6 +8,7 @@ import { ParticipanteService } from '../service/participante.service';
 import { UserService } from '../service/user.service';
 import { Avaliador } from '../avaliador/avaliador';
 import { AvaliadorService } from '../service/avaliador.service';
+import { AvaliacaoService } from '../service/avaliacao.service';
 
 import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -25,7 +26,9 @@ export class PainelVotacaoComponent implements OnInit {
   mensagens: Message[] = [];
   erro = '';
   participantes = [];
+  avaliadores = [];
   presidente = [];
+  avaliacoes = [];
   visibleSidebar;
   visibleSidebar2;
   cc;
@@ -37,7 +40,8 @@ export class PainelVotacaoComponent implements OnInit {
     private roteador: Router,
     private confirmationService: ConfirmationService,
     private userService: UserService,
-    private AvaliadorService: AvaliadorService) { }
+    private AvaliadorService: AvaliadorService,
+    private AvaliacaoService: AvaliacaoService) { }
 
   ngOnInit() {
     this.carregar();
@@ -63,51 +67,93 @@ export class PainelVotacaoComponent implements OnInit {
         this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os avaliadores' });
       });
 
+    this.AvaliacaoService.recuperarTodos()
+      .then(
+      (avaliacoes) => {
+        this.avaliacoes = avaliacoes;
+      },
+      (erro) => {
+        this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os contatos' });
+      });
   }
 
   abrirValidacaoPresidente() {
-    this.visibleSidebarAvaliacao = true;
+    if (this.presidente != null) {
+      this.visibleSidebarAvaliacao = true;
+      alert("Existe presidente")
+    } else {
+      alert("Não existe presidente cadastrado")
+    }
   }
 
-  iniciarAvaliacao(event) {
+  avaliacaoStatus = false;
+  iniciarAvaliacao(event, formulario: FormControl) {
     event.preventDefault();
     var cpfAutorizacao = event.target.elements[0].value;
 
-    for (var index = 0; index < this.presidente.length; index++) {
-      var cpfPresidente = this.presidente[index].cpf;
-      //verifica se o cpf e do presidente
-      if (cpfAutorizacao == cpfPresidente) {
-        alert("Avaliacao Iniciada")
-      }else {
-        alert("Nao autorizado")
+    //verifica se presidente existe para poder iniciar a avaliacao
+    if (this.presidente != null) {
+      for (var index = 0; index < this.presidente.length; index++) {
+        var cpfPresidente = this.presidente[index].cpf;
+        //verifica se o cpf e do presidente
+        if (cpfAutorizacao == cpfPresidente) {
+          alert("Autorizado")
+
+          console.log(formulario.value)
+          if (this.avaliacaoStatus == true) {  //verificar essa validacao
+            alert("Avaliação já iniciada!")
+          } else {
+            this.AvaliacaoService.iniciar(formulario.value)
+              .then(
+              () => {
+                formulario.reset();
+                this.carregar();
+                this.avaliacaoStatus = true;
+              },
+              (erro) => {
+                this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar iniciar a avaliação' });
+              }
+              );
+          }
+        }
       }
-
     }
-
   }
 
+
   avaliarCosplay(participante) {
-    this.visibleSidebar = true;
-    this.visibleSidebar2 = false;
-    this.cc = participante.cosplay;
-    if (this.cc == true) {
-      this.cc = "Avaliação de Cosplay";
+    if (this.avaliacoes[0] != null) {
+      console.log("Avaliacao em aberto!")
+      console.log(this.avaliacoes)
+      this.visibleSidebar = true;
+      this.visibleSidebar2 = false;
+      this.cc = participante.cosplay;
+      if (this.cc == true) {
+        this.cc = "Avaliação de Cosplay";
+      } else {
+        this.cc = "Avaliação de Cospobre"
+      }
+      this.participanteSelecionado = participante;
     } else {
-      this.cc = "Avaliação de Cospobre"
+      alert("Presidente precisa iniciar a avaliação")
     }
-    this.participanteSelecionado = participante;
   }
 
   avaliarCospobre(participante) {
-    this.visibleSidebar = false;
-    this.visibleSidebar2 = true;
-    this.cc = participante.cosplay;
-    if (this.cc == true) {
-      this.cc = "Avaliação de Cosplay";
+    if (this.avaliacoes[0] != null) {
+      console.log("Avaliacao em aberto!")
+      this.visibleSidebar = false;
+      this.visibleSidebar2 = true;
+      this.cc = participante.cosplay;
+      if (this.cc == true) {
+        this.cc = "Avaliação de Cosplay";
+      } else {
+        this.cc = "Avaliação de Cospobre"
+      }
+      this.participanteSelecionado = participante;
     } else {
-      this.cc = "Avaliação de Cospobre"
+      alert("Presidente precisa iniciar a avaliação")
     }
-    this.participanteSelecionado = participante;
   }
 
   somaCosplay;

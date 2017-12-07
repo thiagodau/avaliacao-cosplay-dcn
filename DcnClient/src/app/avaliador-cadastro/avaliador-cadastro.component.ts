@@ -40,17 +40,10 @@ export class AvaliadorCadastroComponent implements OnInit {
       });
   }
 
-/*  verificaPresidenteJaExiste() {
-    this.mensagens = [];
-    this.avaliadorService.verificaPresidente()
-      .then(
 
-      )
-  } */
-
+  
   cadastrar(formulario: FormControl) {
     this.mensagens = [];
-    //this.verificaPresidenteJaExiste();
     this.avaliadorService.salvar(formulario.value)
       .then(
       () => {

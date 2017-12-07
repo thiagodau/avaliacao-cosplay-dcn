@@ -46,7 +46,6 @@ export class CadastroParticipanteComponent implements OnInit {
 
   cadastrar(formulario: FormControl) {
     this.mensagens = [];
-    
     this.ParticipanteService.salvar(formulario.value)
       .then(
       () => {
@@ -58,7 +57,7 @@ export class CadastroParticipanteComponent implements OnInit {
       (erro) => {
         this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar cadastrar o participante' });
       }
-      );
+      ); 
   }
 
 }

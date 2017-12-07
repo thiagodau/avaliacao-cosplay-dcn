@@ -20,11 +20,13 @@
         </div>
         <div class="ui-g-2 ui-sm-12 ui-fluid">
           <label>Interno:</label>
-          <p-checkbox name="interno" binary="true" ngModel interno></p-checkbox>
+          <!-- preciso arrumar essa validacao de boolean -->
+          <p-checkbox name="interno" ngModel interno></p-checkbox>
         </div>
         <div class="ui-g-2 ui-sm-12 ui-fluid">
           <label>Presidente:</label>
-          <p-checkbox name="presidente" binary="false" ngModel presidente></p-checkbox>
+          <!-- preciso arrumar essa validacao de boolean -->
+          <p-checkbox name="presidente" ngModel presidente></p-checkbox>
         </div>
         <div class="ui-g-12 ui-fluid">
           <button pButton type="submit" label="Cadastrar" [disabled]="frm.invalid"></button>
