@@ -34,6 +34,9 @@ export class PainelVotacaoComponent implements OnInit {
   cc;
   participanteSelecionado;
   visibleSidebarAvaliacao;
+  visibleSidebarFecharAvaliacao;
+  visibleSidebarFechar;
+  visibleSidebarFechar2;
 
   constructor(
     private ParticipanteService: ParticipanteService,
@@ -86,7 +89,6 @@ export class PainelVotacaoComponent implements OnInit {
     }
   }
 
-  avaliacaoStatus = false;
   iniciarAvaliacao(event, formulario: FormControl) {
     event.preventDefault();
     var cpfAutorizacao = event.target.elements[0].value;
@@ -100,7 +102,7 @@ export class PainelVotacaoComponent implements OnInit {
           alert("Autorizado")
 
           console.log(formulario.value)
-          if (this.avaliacaoStatus == true) {  //verificar essa validacao
+          if (this.avaliacoes[0] != null) {
             alert("Avaliação já iniciada!")
           } else {
             this.AvaliacaoService.iniciar(formulario.value)
@@ -108,7 +110,6 @@ export class PainelVotacaoComponent implements OnInit {
               () => {
                 formulario.reset();
                 this.carregar();
-                this.avaliacaoStatus = true;
               },
               (erro) => {
                 this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar iniciar a avaliação' });
@@ -120,6 +121,41 @@ export class PainelVotacaoComponent implements OnInit {
     }
   }
 
+  fecharValidacaoPresidente(){
+    if (this.presidente != null) {
+      this.visibleSidebarFecharAvaliacao = true;
+      alert("Abriu")
+    } else {
+      alert("Não existe presidente cadastrado")
+    }
+  }
+
+  fecharAvaliacao(evento) {
+    evento.preventDefault();
+    var cpfAutorizacaoFechar = evento.target.elements[0].value;
+    console.log(cpfAutorizacaoFechar)
+    
+    //verifica se presidente existe para poder fechar a avaliacao
+    if (this.presidente != null) {
+      console.log(this.presidente)
+      for (var index = 0; index < this.presidente.length; index++) {
+        var cpfPresidente = this.presidente[index].cpf;
+        //verifica se o cpf e do presidente
+        if (cpfAutorizacaoFechar == cpfPresidente) {
+          alert("Autorizado")
+          if (this.avaliacoes[0] != null) {
+            alert("Avaliação disponivel para fechar!")
+            var hash = this.avaliacoes[0]._id;
+            console.log(hash)
+            alert(hash)
+            //...
+          } else {
+            alert("Avaliação não inicou para fechar Geek!")
+          }
+        }
+      }
+    }
+  }
 
   avaliarCosplay(participante) {
     if (this.avaliacoes[0] != null) {

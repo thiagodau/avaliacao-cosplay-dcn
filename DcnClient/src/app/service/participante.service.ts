@@ -22,6 +22,20 @@ export class ParticipanteService {
       .catch(this.lidaComErro);
   }
 
+  recuperarTodosCosplayMaiorPontuacao(): Promise<Participante[]> {
+    return this.http.get(this.urlServicos + "/pontuacao-cosplay")
+      .toPromise()
+      .then(resposta => Promise.resolve(resposta))
+      .catch(this.lidaComErro);
+  }
+
+  recuperarTodosCospobreMaiorPontuacao(): Promise<Participante[]> {
+    return this.http.get(this.urlServicos + "/pontuacao-cospobre")
+      .toPromise()
+      .then(resposta => Promise.resolve(resposta))
+      .catch(this.lidaComErro);
+  }
+
   salvar(participante: Participante): Promise<Participante> {
     return this.http.post(this.urlServicos, participante)
       .toPromise()

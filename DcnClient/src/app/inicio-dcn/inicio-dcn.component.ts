@@ -26,6 +26,8 @@ export class InicioDcnComponent implements OnInit {
   titulo = 'Dia da Cultura Nerd 4';
   mensagens: Message[] = [];
   avaliadores = [];
+  participantesCosplay = [];
+  participantesCospobre = [];
   visibleSidebar;
   responsaveis = [];
 
@@ -62,6 +64,27 @@ export class InicioDcnComponent implements OnInit {
       (erro) => {
         this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os avaliadores' });
       });
+
+      //cosplayServicePontuacao
+      this.ParticipanteService.recuperarTodosCosplayMaiorPontuacao()
+      .then(
+      (participantesCosplay) => {
+        this.participantesCosplay = participantesCosplay;
+      },
+      (erro) => {
+        this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os contatos' });
+      });
+
+      //cospobreServicePontuacao
+      this.ParticipanteService.recuperarTodosCospobreMaiorPontuacao()
+      .then(
+      (participantesCospobre) => {
+        this.participantesCospobre = participantesCospobre;
+      },
+      (erro) => {
+        this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os contatos' });
+      });
+
   }
 
   avaliador() {
@@ -78,7 +101,6 @@ export class InicioDcnComponent implements OnInit {
     for (var index = 0; index < this.avaliadores.length; index++) {
       var cpf = this.avaliadores[index].cpf;
       var senha = this.avaliadores[index].senha;
-      //console.log(cpf)
 
       if (cpfLogin == cpf && password == senha) {
         this.userService.setUserLogin();
@@ -91,14 +113,21 @@ export class InicioDcnComponent implements OnInit {
     for (var index = 0; index < this.responsaveis.length; index++) {
       var cpf = this.responsaveis[index].cpf;
       var senha = this.responsaveis[index].senha;
-      //console.log(cpf)
-      
+
       if (cpfLogin == cpf && password == senha) {
         cpf = null
         this.userService.setUserLogin();
         this.roteador.navigate(['participantes']);
       }
     }
+  }
+
+  cadastrarResponsaveis() {
+    this.roteador.navigate(['responsaveisInscricao']);
+  }
+
+  cadastrarAvaliadores() {
+    this.roteador.navigate(['avaliadores']);
   }
 
   voltar() {

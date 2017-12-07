@@ -2,7 +2,7 @@
     {{ tituloPagina }}
 </div>
 <div class="ui-g">
-    <div class="ui-g-12">
+    <div class="ui-g-4">
         <button pButton type="button" icon="fa-legal" (click)="abrirValidacaoPresidente()" label="Iniciar Avaliação"></button>
         <p-sidebar [(visible)]="visibleSidebarAvaliacao" position="left" [baseZIndex]="10000">
             <h1 style="font-weight:normal">Informe seu cpf presidente:</h1>
@@ -24,6 +24,7 @@
             </form>
         </p-sidebar>
     </div>
+
     <div class="ui-g-12">
         <p-dataTable #tabela [value]="participantes" [rows]="10" [paginator]="false" emptyMessage="Nenhum participante cadastrado">
             <p-column field="personagem" header="Cosplay / Cospobre" [filter]="true" filterMatchMode="contains"></p-column>

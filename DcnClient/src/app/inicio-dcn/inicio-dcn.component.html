@@ -5,6 +5,8 @@
 <div class="ui-g">
   <div class="ui-g-12">
     <button pButton type="button" (click)="avaliador()" icon="fa-user" label="Acessar Painel"></button>
+    <button pButton type="button" (click)="cadastrarResponsaveis()" icon="fa-user" label="Cadastrar Responsavel Inscrição"></button>
+    <button pButton type="button" (click)="cadastrarAvaliadores()" icon="fa-user" label="Cadastrar Avaliadores"></button>
     <p-sidebar [(visible)]="visibleSidebar" position="left" [baseZIndex]="10000">
       <h1 style="font-weight:normal">Login</h1>
       <form (submit)="logar($event)">
@@ -18,7 +20,6 @@
           <input pPassword type="password" name="senha" placeholder="Senha" />
         </div>
         <br>
-        
         <div class="ui-g-12 ui-sm-12 ui-fluid">
           <p-message severity="info" text="Será redirecionado para sua função."></p-message>
         </div>
@@ -28,6 +29,19 @@
     </p-sidebar>
     <div class="ui-g-12">
       <h3>Acompanhamento de votação</h3>
+      <h5>Cosplay</h5>
+      <p-dataTable #tabela [value]="participantesCosplay" [rows]="10" [paginator]="false" emptyMessage="Nenhum participante cadastrado">
+        <p-column field="personagem" header="Cosplay"></p-column>
+        <p-column field="nome" header="Nome do Participante"></p-column>
+        <p-column field="pontos" header="Pontuação"></p-column>
+      </p-dataTable>
+
+      <h5>Cospobre</h5>
+      <p-dataTable #tabela2 [value]="participantesCospobre" [rows]="10" [paginator]="false" emptyMessage="Nenhum participante cadastrado">
+        <p-column field="personagem" header="Cospobre"></p-column>
+        <p-column field="nome" header="Nome do Participante"></p-column>
+        <p-column field="pontos" header="Pontuação"></p-column>
+      </p-dataTable>
 
     </div>
   </div>
