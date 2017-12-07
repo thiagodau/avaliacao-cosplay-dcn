@@ -13,6 +13,7 @@ import { UserService } from '../service/user.service';
 import { ParticipanteService } from '../service/participante.service';
 import { AvaliadorService } from '../service/avaliador.service';
 import { ResponsavelInscricaoService } from '../service/responsavel-inscricao.service';
+import { AvaliacaoService } from '../service/avaliacao.service';
 
 import { Message } from 'primeng/components/common/api';
 
@@ -30,7 +31,10 @@ export class InicioDcnComponent implements OnInit {
   participantesCospobre = [];
   visibleSidebar;
   responsaveis = [];
-  netImage:any = "../assets/verificacao.png";
+  netImage: any = "../assets/verificacao.png";
+  imageOpen: any = "../assets/verificacao.png";
+  imageClose: any = "../assets/verificacao.png";
+  avaliacaoStatus = [];
 
   constructor(private location: Location,
     private rotas: ActivatedRoute,
@@ -39,10 +43,12 @@ export class InicioDcnComponent implements OnInit {
     private ParticipanteService: ParticipanteService,
     private AvaliadorService: AvaliadorService,
     private ResponsavelInscricaoService: ResponsavelInscricaoService,
+    private AvaliacaoService: AvaliacaoService,
     private userService: UserService) { }
 
   ngOnInit() {
     this.carregar();
+    this.carregarStatusAvalicao();
   }
 
   carregar() {
@@ -66,8 +72,8 @@ export class InicioDcnComponent implements OnInit {
         this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os avaliadores' });
       });
 
-      //cosplayServicePontuacao
-      this.ParticipanteService.recuperarTodosCosplayMaiorPontuacao()
+    //cosplayServicePontuacao
+    this.ParticipanteService.recuperarTodosCosplayMaiorPontuacao()
       .then(
       (participantesCosplay) => {
         this.participantesCosplay = participantesCosplay;
@@ -76,8 +82,8 @@ export class InicioDcnComponent implements OnInit {
         this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os contatos' });
       });
 
-      //cospobreServicePontuacao
-      this.ParticipanteService.recuperarTodosCospobreMaiorPontuacao()
+    //cospobreServicePontuacao
+    this.ParticipanteService.recuperarTodosCospobreMaiorPontuacao()
       .then(
       (participantesCospobre) => {
         this.participantesCospobre = participantesCospobre;
@@ -85,11 +91,24 @@ export class InicioDcnComponent implements OnInit {
       (erro) => {
         this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os contatos' });
       });
-
   }
 
-  btnRefresh(){
-    alert("Não ta funcionando ainda rs")
+  carregarStatusAvalicao() {
+    this.AvaliacaoService.recuperarTodos()
+    .then(
+    (avaliacoes) => {
+      this.avaliacaoStatus = avaliacoes;
+    },
+    (erro) => {
+      this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os avaliadores' });
+    });
+
+    if (this.avaliacaoStatus[0] != null ) {
+      console.log("Avalição em andamento")
+    } else {
+      console.log("Avalição fechada")
+    }
+
   }
 
   avaliador() {

@@ -191,7 +191,6 @@ export class PainelVotacaoComponent implements OnInit {
       alert("Presidente precisa iniciar a avaliação")
     }
   }
-
   
   salvarAvaliacaoCosplay(v, v1, v2, v3, participante) {
     this.visibleSidebar = false;

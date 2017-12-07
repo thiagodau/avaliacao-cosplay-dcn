@@ -53,6 +53,7 @@ export class CadastroParticipanteComponent implements OnInit {
         formulario.reset();
         this.carregar();
         this.mensagens.push({ severity: 'success', summary: 'Sucesso', detail: 'Participante "' + nome + '" cadastrado' });
+        location.reload();
       },
       (erro) => {
         this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar cadastrar o participante' });

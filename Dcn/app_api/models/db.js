@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var dbURI = 'mongodb://localhost/dcn';
+var dbURI = 'mongodb://localhost/dcnbanco';
 mongoose.Promise = global.Promise;
 
 if (process.env.NODE_ENV === 'production') {

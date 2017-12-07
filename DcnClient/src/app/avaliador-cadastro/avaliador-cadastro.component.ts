@@ -52,8 +52,6 @@ export class AvaliadorCadastroComponent implements OnInit {
       });
   }
 
-
-
   cadastrar(formulario: FormControl) {
     this.mensagens = [];
 
@@ -66,6 +64,7 @@ export class AvaliadorCadastroComponent implements OnInit {
           formulario.reset();
           this.carregar();
           this.mensagens.push({ severity: 'success', summary: 'Sucesso', detail: 'Avaliador "' + nome + '" cadastrado' });
+          location.reload();
         },
         (erro) => {
           this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar cadastrar o avaliador' });
