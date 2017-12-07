@@ -40,7 +40,7 @@ module.exports.remove = function (req, res) {
 };
 
 module.exports.buscaStatusAvaliacao = function (req, res) {
-    Avaliacao.find({'avaliada' : true}).exec()
+    Avaliacao.find({'iniciada' : true}).exec()
         .then(
         function (avaliacoes) {
             res.json(avaliacoes);

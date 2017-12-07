@@ -32,9 +32,8 @@ export class InicioDcnComponent implements OnInit {
   visibleSidebar;
   responsaveis = [];
   netImage: any = "../assets/verificacao.png";
-  imageOpen: any = "../assets/verificacao.png";
-  imageClose: any = "../assets/verificacao.png";
-  avaliacaoStatus = [];
+  iniciada = [];
+  status = 0;
 
   constructor(private location: Location,
     private rotas: ActivatedRoute,
@@ -48,7 +47,6 @@ export class InicioDcnComponent implements OnInit {
 
   ngOnInit() {
     this.carregar();
-    this.carregarStatusAvalicao();
   }
 
   carregar() {
@@ -91,24 +89,23 @@ export class InicioDcnComponent implements OnInit {
       (erro) => {
         this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os contatos' });
       });
-  }
 
-  carregarStatusAvalicao() {
-    this.AvaliacaoService.recuperarTodos()
-    .then(
-    (avaliacoes) => {
-      this.avaliacaoStatus = avaliacoes;
-    },
-    (erro) => {
-      this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar os avaliadores' });
-    });
-
-    if (this.avaliacaoStatus[0] != null ) {
-      console.log("Avalição em andamento")
-    } else {
-      console.log("Avalição fechada")
-    }
-
+    this.AvaliacaoService.buscaStatusAvaliacao()
+      .then(
+      (avaliacoes) => {
+        this.iniciada = avaliacoes;
+        if (this.iniciada.length <= 0) {
+          console.log("Avaliação fechada")
+          console.log(this.iniciada)
+          this.mensagens.push({ severity: 'info', summary: 'Avaliação não está aberta' });
+        } else {
+          console.log(this.iniciada)
+          this.mensagens.push({ severity: 'success', summary: 'Avaliação em andamento' });
+        }
+      },
+      (erro) => {
+        this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar carregar as avaliacoes' });
+      });
   }
 
   avaliador() {

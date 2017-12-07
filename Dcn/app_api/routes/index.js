@@ -28,5 +28,6 @@ router.post('/responsaveisInscricao', ctrlResponsaveisInscricao.salva);
 router.get('/avaliacoes', ctrlAvaliacoes.buscaTodos);
 router.post('/avaliacoes', ctrlAvaliacoes.salva);
 router.delete('/avaliacoes/:_id', ctrlAvaliacoes.remove);
+router.get('/avaliacoes/avaliacao', ctrlAvaliacoes.buscaStatusAvaliacao);
 
 module.exports = router;

@@ -110,6 +110,7 @@ export class PainelVotacaoComponent implements OnInit {
               () => {
                 formulario.reset();
                 this.carregar();
+                location.reload();
               },
               (erro) => {
                 this.mensagens.push({ severity: 'error', summary: 'Erro', detail: 'Ocorreu um erro ao tentar iniciar a avaliação' });

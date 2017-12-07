@@ -7,6 +7,7 @@
     <button pButton type="button" (click)="avaliador()" icon="fa-user" label="Acessar Painel"></button>
     <button pButton type="button" (click)="cadastrarResponsaveis()" icon="fa-book" label="Cadastrar Responsavel Inscrição"></button>
     <button pButton type="button" (click)="cadastrarAvaliadores()" icon="fa-group" label="Cadastrar Avaliadores"></button>
+    <p-messages [(value)]="mensagens"></p-messages>
     <p-sidebar [(visible)]="visibleSidebar" position="left" [baseZIndex]="10000">
       <h1 style="font-weight:normal">Login</h1>
       <form (submit)="logar($event)">

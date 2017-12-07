@@ -22,6 +22,13 @@ export class AvaliacaoService {
       .catch(this.lidaComErro);
   }
 
+  buscaStatusAvaliacao(): Promise<Avaliacao[]> {
+    return this.http.get(this.urlServicos + "/avaliacao")
+      .toPromise()
+      .then(resposta => Promise.resolve(resposta))
+      .catch(this.lidaComErro);
+  }
+
   recuperarTodosCosplayPontos(): Promise<Avaliacao[]> {
     return this.http.get(this.urlServicos + "/pontuacao-cosplay")
       .toPromise()
@@ -31,13 +38,6 @@ export class AvaliacaoService {
 
   recuperarTodosCospobrePontos(): Promise<Avaliacao[]> {
     return this.http.get(this.urlServicos + "/pontuacao-cospobre")
-      .toPromise()
-      .then(resposta => Promise.resolve(resposta))
-      .catch(this.lidaComErro);
-  }
-
-  recuperarPresidente(): Promise<Avaliacao[]> {
-    return this.http.get(this.urlServicos + "/presidente")
       .toPromise()
       .then(resposta => Promise.resolve(resposta))
       .catch(this.lidaComErro);
